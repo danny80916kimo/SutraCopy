@@ -1,36 +1,36 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>舒經 easeSutra — 產品介紹</title>
+<title>easeSutra 舒經 — Product Overview</title>
 
 <!-- ===========================================
      FONTS (Google Fonts)
-     LXGW WenKai TC  : 手寫楷體，用在「手寫字」與印章
-     Noto Serif TC   : 標題與內文宋體
-     Zen Old Mincho  : 拉丁字母的舊明朝體
+     LXGW WenKai TC  : handwriting-style Kai, used for "written" characters and the seal
+     Noto Serif TC   : CJK serif for scripture text and body copy
+     Zen Old Mincho  : old-style Mincho with elegant Latin glyphs, used for English display
      =========================================== -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Serif+TC:wght@300;500;600;900&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Serif+TC:wght@300;500;600;900&family=Zen+Old+Mincho:wght@400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
 /* ===========================================
-   THEME VARIABLES — 改這裡就能換整體配色
+   THEME VARIABLES — change these to recolor the whole deck
    =========================================== */
 :root{
-  --stage-bg:#14110e;          /* 瀏覽器留邊的底色 */
-  --slide-bg:#f3ecdc;          /* 宣紙 */
+  --stage-bg:#14110e;          /* letterbox color around the stage */
+  --slide-bg:#f3ecdc;          /* rice paper */
   --paper:#f3ecdc;
   --paper-deep:#e6dcc4;
-  --ink:#1c1a17;               /* 墨 */
+  --ink:#1c1a17;               /* ink */
   --ink-70:rgba(28,26,23,.7);
   --ink-55:rgba(28,26,23,.55);
   --ink-faint:rgba(28,26,23,.14);
-  --grid:rgba(120,90,50,.28);  /* 格線 */
+  --grid:rgba(120,90,50,.28);  /* grid lines */
   --grid-strong:rgba(120,90,50,.5);
-  --zhu:#b3382a;               /* 硃砂 */
+  --zhu:#b3382a;               /* vermilion (seal red) */
   --zhu-soft:rgba(179,56,42,.12);
 
   --font-serif:'Noto Serif TC',serif;
@@ -176,11 +176,11 @@ svg {
 }
 
 /* ===========================================
-   SLIDE SURFACE — 宣紙質感
-   每張投影片都有柔光漸層 + SVG 噪點模擬紙纖維
+   SLIDE SURFACE — rice paper
+   Every slide: soft light gradients + SVG noise for paper fibre
    =========================================== */
 .slide{
-  font-family:var(--font-serif);
+  font-family:var(--font-latin);
   color:var(--ink);
   transition:opacity .55s ease;
   background:
@@ -197,25 +197,24 @@ svg {
 /* ===========================================
    SHARED COMPONENTS
    =========================================== */
-/* 頁角小字：左下章節、右下頁碼 */
-.corner{left:150px;bottom:90px;font-size:20px;letter-spacing:.32em;color:var(--ink-55)}
-.pageno{right:150px;bottom:90px;font-family:var(--font-latin);font-size:20px;letter-spacing:.2em;color:var(--ink-55)}
+/* corner chrome: section (bottom-left), page number (bottom-right) */
+.corner{left:150px;bottom:90px;font-size:18px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-55)}
+.pageno{right:150px;bottom:90px;font-size:18px;letter-spacing:.2em;color:var(--ink-55)}
 
-/* 直書章節標籤（右側） */
+/* vertical section label (right edge) */
 .vlabel{
   right:150px;top:100px;height:520px;
-  writing-mode:vertical-rl;font-weight:300;font-size:34px;letter-spacing:.42em;color:var(--ink-70);
+  writing-mode:vertical-rl;font-weight:400;font-size:24px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-70);
   border-right:1px solid var(--grid-strong);padding-right:34px;
 }
-.vlabel b{font-weight:600;color:var(--zhu)}
 
-/* 大標 */
-.h-big{left:150px;top:160px;font-weight:900;font-size:120px;line-height:1.15;letter-spacing:.04em}
+/* big heading */
+.h-big{left:150px;top:160px;font-weight:900;font-size:104px;line-height:1.14;letter-spacing:-.005em;width:1400px}
 .h-big .zhu{color:var(--zhu)}
-.lead{left:150px;top:440px;width:1000px;font-size:36px;line-height:1.9;font-weight:300}
-.lead b{font-weight:600;color:var(--zhu)}
+.lead{left:150px;top:440px;width:1000px;font-size:34px;line-height:1.75;font-weight:400;color:var(--ink-70)}
+.lead b{font-weight:700;color:var(--zhu)}
 
-/* 硃砂印 */
+/* vermilion seal */
 .seal{
   width:150px;height:150px;border:5px solid var(--zhu);border-radius:10px;color:var(--zhu);
   display:grid;place-items:center;font-family:var(--font-kai);font-weight:700;font-size:58px;line-height:1.05;
@@ -225,7 +224,7 @@ svg {
 .slide.visible .seal-wrap{opacity:.92;transform:none}
 .seal-wrap .seal{transform:rotate(-4deg)}
 
-/* 抄經格：一個正方格，淡印範字 + 手寫字 */
+/* copy cell: one square, faint model character + "written" character */
 .cell{
   width:110px;height:110px;border-bottom:1px solid var(--grid);position:relative;display:grid;place-items:center;
 }
@@ -247,26 +246,29 @@ svg {
 .column .cell:nth-child(5) .ink{transition-delay:2.2s}.column .cell:nth-child(6) .ink{transition-delay:2.6s}
 .column .cell:nth-child(7) .ink{transition-delay:3s}.column .cell:nth-child(8) .ink{transition-delay:3.4s}
 
-/* 進場動畫：.reveal + 延遲級距 .d1~.d6 */
+/* entrance animation: .reveal + stagger classes .d1~.d6 */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
 .slide.visible .reveal{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.28s}.d3{transition-delay:.46s}
 .d4{transition-delay:.64s}.d5{transition-delay:.82s}.d6{transition-delay:1s}
 
+/* CJK runs inside English slides */
+.cjk{font-family:var(--font-serif)}
+
 /* ===========================================
-   SLIDE 1 — 封面
+   SLIDE 1 — Cover
    =========================================== */
-.s1 .title{left:150px;top:180px;font-weight:900;font-size:300px;line-height:1;letter-spacing:.04em}
-.s1 .latin{left:158px;top:520px;font-family:var(--font-latin);font-size:46px;letter-spacing:.22em;color:var(--ink);opacity:.6}
-.s1 .sub{left:158px;top:640px;width:760px;font-size:34px;line-height:1.85;font-weight:300}
-.s1 .sub b{font-weight:600;color:var(--zhu)}
-.s1 .meta{left:158px;bottom:100px;font-size:22px;letter-spacing:.3em;color:var(--ink);opacity:.55}
-.s1 .seal-wrap{left:880px;top:560px;transition-delay:3.9s}
-.s1 .jingming{right:340px;top:100px;height:880px;writing-mode:vertical-rl;font-weight:300;font-size:40px;letter-spacing:.42em;color:var(--ink);opacity:.75;border-right:1px solid var(--grid);padding-right:40px}
+.s1 .title{left:150px;top:200px;font-weight:900;font-size:210px;line-height:1;letter-spacing:-.01em}
+.s1 .cn{left:158px;top:470px;font-family:var(--font-kai);font-size:64px;letter-spacing:.24em;color:var(--ink);opacity:.72}
+.s1 .sub{left:158px;top:600px;width:820px;font-size:30px;line-height:1.8;font-weight:400;color:var(--ink-70)}
+.s1 .sub b{font-weight:700;color:var(--zhu)}
+.s1 .meta{left:158px;bottom:100px;font-size:18px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink);opacity:.55}
+.s1 .seal-wrap{left:1040px;top:590px;transition-delay:3.9s}
+.s1 .jingming{right:340px;top:100px;height:880px;writing-mode:vertical-rl;font-family:var(--font-serif);font-weight:300;font-size:40px;letter-spacing:.42em;color:var(--ink);opacity:.75;border-right:1px solid var(--grid);padding-right:40px}
 .s1 .column{right:190px;top:100px}
 
 /* ===========================================
-   SLIDE 2 — 緣起
+   SLIDE 2 — Origin
    =========================================== */
 .s2 .bigchar{
   right:220px;top:60px;font-family:var(--font-kai);font-weight:700;font-size:760px;line-height:1;
@@ -277,24 +279,41 @@ svg {
 .s2 .lead{top:590px}
 
 /* ===========================================
-   SLIDE 3 — 三步
+   SLIDE 3 — Three steps
    =========================================== */
-.s3 .h-big{top:130px;font-size:96px}
+.s3 .h-big{top:130px;font-size:84px}
 .steps{left:150px;top:380px;width:1440px;display:grid;grid-template-columns:repeat(3,1fr);gap:60px}
 .step{padding-top:36px;border-top:1.5px solid var(--grid-strong);min-height:420px;position:relative}
 .step .num{font-family:var(--font-kai);font-weight:700;font-size:120px;line-height:1;color:var(--zhu);opacity:.9}
-.step h3{margin-top:24px;font-weight:600;font-size:46px;letter-spacing:.06em}
-.step p{margin-top:22px;font-size:28px;line-height:1.8;font-weight:300;color:var(--ink-70)}
+.step h3{margin-top:24px;font-weight:700;font-size:40px;letter-spacing:-.005em}
+.step p{margin-top:20px;font-size:26px;line-height:1.7;font-weight:400;color:var(--ink-70)}
 
 /* ===========================================
-   SLIDE 4 — 抄寫體驗（手機模擬）
+   SLIDE 4 — Live demo (screen recording)
+   Video sits inside a phone-shaped frame; JS plays it when the slide is active.
+   =========================================== */
+.sdemo .h-big{top:150px;font-size:96px;width:960px}
+.sdemo .lead{top:400px;width:900px;font-size:30px}
+.timeline{left:150px;top:520px;width:900px}
+.timeline li{list-style:none;display:grid;grid-template-columns:100px 1fr;gap:20px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--grid)}
+.timeline li:last-child{border-bottom:none}
+.timeline .t{font-size:22px;letter-spacing:.12em;color:var(--zhu)}
+.timeline p{font-size:24px;line-height:1.55;color:var(--ink-70)}
+.device{
+  left:1180px;top:80px;width:436px;height:920px;border:2px solid var(--grid-strong);border-radius:56px;padding:14px;
+  background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,0));box-shadow:0 40px 80px -40px rgba(60,40,20,.45);
+}
+.device video{display:block;width:100%;height:100%;object-fit:cover;border-radius:44px;background:#f7f2e6}
+
+/* ===========================================
+   SLIDE 5 — Writing experience (phone mock)
    =========================================== */
 .phone{
   left:170px;top:90px;width:520px;height:840px;border:2px solid var(--grid-strong);border-radius:48px;
   background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,0));padding:56px 40px;display:flex;flex-direction:column;align-items:center;
 }
-.phone .top{font-size:22px;letter-spacing:.22em;color:var(--ink-55);text-align:center}
-.phone .top b{display:block;margin-top:10px;font-weight:600;font-size:26px;letter-spacing:.1em;color:var(--ink)}
+.phone .top{font-size:18px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-55);text-align:center}
+.phone .top b{display:block;margin-top:10px;font-weight:700;font-size:24px;letter-spacing:.04em;text-transform:none;color:var(--ink)}
 .phone .neighbors{margin-top:36px;width:100%;display:flex;justify-content:space-between;align-items:center}
 .phone .neighbors > span{font-family:var(--font-kai);font-size:54px;color:var(--ink-faint);width:60px;text-align:center}
 .bigcell{
@@ -312,23 +331,23 @@ svg {
 }
 .slide.visible .bigcell .ink{opacity:1;filter:none}
 .phone .btns{margin-top:auto;width:100%;display:flex;gap:16px}
-.phone .btn{flex:1;text-align:center;padding:18px 0;border:1.5px solid var(--grid-strong);border-radius:999px;font-size:24px;letter-spacing:.1em;color:var(--ink-70)}
+.phone .btn{flex:1;text-align:center;padding:18px 0;border:1.5px solid var(--grid-strong);border-radius:999px;font-size:22px;letter-spacing:.04em;color:var(--ink-70)}
 .phone .btn.primary{background:var(--zhu);border-color:var(--zhu);color:var(--paper)}
-.points{left:820px;top:200px;width:900px}
-.points li{list-style:none;display:grid;grid-template-columns:110px 1fr;gap:20px;align-items:start;padding:34px 0;border-bottom:1px solid var(--grid)}
+.points{left:820px;top:200px;width:920px}
+.points li{list-style:none;display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:start;padding:34px 0;border-bottom:1px solid var(--grid)}
 .points li:last-child{border-bottom:none}
-.points .k{font-family:var(--font-kai);font-size:44px;color:var(--zhu);line-height:1.2}
-.points h3{font-weight:600;font-size:38px;letter-spacing:.04em}
-.points p{margin-top:10px;font-size:26px;line-height:1.75;font-weight:300;color:var(--ink-70)}
+.points .k{font-size:24px;letter-spacing:.16em;text-transform:uppercase;color:var(--zhu);line-height:1.6;padding-top:8px}
+.points h3{font-weight:700;font-size:36px;letter-spacing:-.005em}
+.points p{margin-top:10px;font-size:25px;line-height:1.7;font-weight:400;color:var(--ink-70)}
 
 /* ===========================================
-   SLIDE 5 — 成品版面（1080×1920 縮圖）
+   SLIDE 5 — Output page (1080×1920 thumbnail)
    =========================================== */
 .page{
   left:190px;top:80px;width:495px;height:860px;border:1.5px solid var(--grid-strong);background:rgba(255,255,255,.3);
   padding:41px;display:flex;flex-direction:row-reverse;gap:0;
 }
-.page .tcol{width:37px;height:733px;border:1px solid var(--grid-strong);margin-right:12px;writing-mode:vertical-rl;font-size:23px;letter-spacing:.35em;padding-top:10px;color:var(--ink);font-weight:500;text-align:left}
+.page .tcol{width:37px;height:733px;border:1px solid var(--grid-strong);margin-right:12px;writing-mode:vertical-rl;font-family:var(--font-serif);font-size:23px;letter-spacing:.35em;padding-top:10px;color:var(--ink);font-weight:500;text-align:left}
 .page .body{
   flex:1;height:733px;
   background:
@@ -337,23 +356,23 @@ svg {
   border:1px solid var(--grid-strong);position:relative;overflow:hidden;
 }
 .page .body .chars{
-  position:absolute;inset:0;writing-mode:vertical-rl;font-family:var(--font-kai);font-weight:700;font-size:27px;line-height:36.6px;letter-spacing:9.6px;
-  padding:0 0 0 0;color:var(--ink);opacity:0;transition:opacity 1.4s ease .6s;text-align:left;
+  position:absolute;inset:0;writing-mode:vertical-rl;font-family:var(--font-kai);font-weight:700;font-size:27px;line-height:36.6px;letter-spacing:9.65px;
+  color:var(--ink);opacity:0;transition:opacity 1.4s ease .6s;text-align:left;
 }
 .slide.visible .page .body .chars{opacity:.9}
-.page .foot{position:absolute;left:41px;bottom:30px;font-size:16px;letter-spacing:.2em;color:var(--ink-55)}
+.page .foot{position:absolute;left:41px;bottom:30px;font-size:15px;letter-spacing:.16em;color:var(--ink-55)}
 .s5 .points{left:800px;top:170px}
 .s5 .stat{left:800px;top:790px;display:flex;gap:70px}
-.s5 .stat div{font-family:var(--font-latin);font-size:22px;letter-spacing:.14em;color:var(--ink-55)}
-.s5 .stat b{display:block;font-family:var(--font-serif);font-weight:900;font-size:64px;letter-spacing:0;color:var(--ink);line-height:1.1;margin-bottom:8px}
+.s5 .stat div{font-size:20px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-55)}
+.s5 .stat b{display:block;font-weight:900;font-size:64px;letter-spacing:0;text-transform:none;color:var(--ink);line-height:1.1;margin-bottom:8px}
 
 /* ===========================================
-   SLIDE 6 — 分享
+   SLIDE 6 — Share
    =========================================== */
-.s6 .h-big{top:250px;font-size:150px;line-height:1.1}
+.s6 .h-big{top:250px;font-size:150px;line-height:1.05;width:900px}
 .s6 .lead{top:600px;width:900px}
 .pills{left:150px;top:780px;display:flex;gap:26px}
-.pill{padding:22px 52px;border:2px solid var(--ink);border-radius:999px;font-size:30px;letter-spacing:.14em}
+.pill{padding:22px 52px;border:2px solid var(--ink);border-radius:999px;font-size:28px;letter-spacing:.04em}
 .pill.primary{background:var(--zhu);border-color:var(--zhu);color:var(--paper)}
 .stack{right:320px;top:120px;width:560px;height:840px}
 .stack .sheet{
@@ -365,42 +384,42 @@ svg {
 }
 .stack .sheet.a{left:150px;top:0;transform:rotate(3deg)}
 .stack .sheet.b{left:20px;top:110px;transform:rotate(-4deg)}
-.stack .sheet .tag{position:absolute;right:-24px;top:40px;background:var(--zhu);color:var(--paper);font-size:20px;letter-spacing:.2em;padding:8px 18px}
+.stack .sheet .tag{position:absolute;right:-24px;top:40px;background:var(--zhu);color:var(--paper);font-size:18px;letter-spacing:.16em;text-transform:uppercase;padding:8px 18px}
 
 /* ===========================================
-   SLIDE 7 — 技術骨架
+   SLIDE 7 — Technical skeleton
    =========================================== */
-.s7 .h-big{top:130px;font-size:96px}
+.s7 .h-big{top:130px;font-size:84px}
 .tech{left:150px;top:380px;width:1440px;display:grid;grid-template-columns:1fr 1fr;gap:0 90px}
 .tech > div{padding:38px 0;border-top:1.5px solid var(--grid-strong);display:grid;grid-template-columns:180px 1fr;gap:30px;align-items:baseline;min-height:260px}
-.tech .k{font-family:var(--font-latin);font-size:26px;letter-spacing:.16em;color:var(--zhu)}
-.tech h3{font-weight:600;font-size:40px;letter-spacing:.04em}
-.tech p{margin-top:12px;font-size:26px;line-height:1.75;font-weight:300;color:var(--ink-70)}
+.tech .k{font-size:24px;letter-spacing:.14em;color:var(--zhu)}
+.tech h3{font-weight:700;font-size:36px;letter-spacing:-.005em}
+.tech p{margin-top:12px;font-size:25px;line-height:1.7;font-weight:400;color:var(--ink-70)}
 
 /* ===========================================
-   SLIDE 8 — 下一步
+   SLIDE 8 — Next
    =========================================== */
-.s8 .h-big{top:130px;font-size:96px}
-.next{left:150px;top:370px;width:1200px}
+.s8 .h-big{top:130px;font-size:84px;width:1300px}
+.next{left:150px;top:400px;width:1250px}
 .next li{list-style:none;display:grid;grid-template-columns:130px 1fr;align-items:center;gap:20px;padding:26px 0;border-bottom:1px solid var(--grid)}
 .next li:last-child{border-bottom:none}
 .next .k{font-family:var(--font-kai);font-weight:700;font-size:64px;color:var(--zhu);line-height:1}
-.next h3{font-weight:600;font-size:40px;letter-spacing:.04em}
-.next p{margin-top:8px;font-size:26px;font-weight:300;color:var(--ink-70)}
+.next h3{font-weight:700;font-size:36px;letter-spacing:-.005em}
+.next p{margin-top:8px;font-size:25px;font-weight:400;color:var(--ink-70)}
 .s8 .column{right:190px;top:60px}
 
 /* ===========================================
-   SLIDE 9 — 結尾
+   SLIDE 9 — Closing
    =========================================== */
-.s9 .title{left:0;right:0;top:250px;text-align:center;font-weight:900;font-size:280px;line-height:1;letter-spacing:.06em}
-.s9 .latin{left:0;right:0;top:590px;text-align:center;font-family:var(--font-latin);font-size:44px;letter-spacing:.3em;color:var(--ink);opacity:.6}
-.s9 .lead{left:0;right:0;top:700px;width:auto;text-align:center;font-size:34px}
-.s9 .seal-wrap{left:1290px;top:200px;transition-delay:1.4s}
+.s9 .title{left:0;right:0;top:300px;text-align:center;font-weight:900;font-size:200px;line-height:1;letter-spacing:-.01em}
+.s9 .cn{left:0;right:0;top:560px;text-align:center;font-family:var(--font-kai);font-size:60px;letter-spacing:.3em;color:var(--ink);opacity:.7}
+.s9 .lead{left:0;right:0;top:690px;width:auto;text-align:center;font-size:32px}
+.s9 .seal-wrap{left:1470px;top:250px;transition-delay:1.4s}
 
 /* ===========================================
-   DECK CHROME（在舞台外）：頁碼 + 編輯按鈕
+   DECK CHROME (outside the stage): page counter + edit button
    =========================================== */
-.deck-controls{font-family:var(--font-latin);font-size:13px;letter-spacing:.2em;color:rgba(243,236,220,.55);user-select:none;pointer-events:none}
+.deck-controls{font-family:var(--font-latin);font-size:13px;letter-spacing:.2em;color:#9a9a9a;mix-blend-mode:difference;user-select:none;pointer-events:none}
 .edit-hotzone{position:fixed;top:0;left:0;width:80px;height:80px;z-index:10000;cursor:pointer}
 .edit-toggle{
   position:fixed;top:16px;left:16px;z-index:10001;width:44px;height:44px;border-radius:50%;border:1px solid rgba(243,236,220,.4);
@@ -410,7 +429,7 @@ svg {
 .edit-toggle.active{background:var(--zhu);border-color:var(--zhu)}
 body.editing [contenteditable="true"]{outline:1px dashed var(--zhu);outline-offset:6px;cursor:text}
 body.editing .reveal,body.editing .ink,body.editing .seal-wrap,body.editing .bigchar,body.editing .chars{opacity:1 !important;transform:none !important;filter:none !important;transition:none !important}
-.edit-hint{position:fixed;top:20px;left:72px;z-index:10001;font-family:var(--font-serif);font-size:13px;color:#f3ecdc;background:rgba(28,26,23,.85);padding:10px 14px;border-radius:6px;opacity:0;pointer-events:none;transition:opacity .3s}
+.edit-hint{position:fixed;top:20px;left:72px;z-index:10001;font-family:var(--font-latin);font-size:13px;color:#f3ecdc;background:rgba(28,26,23,.85);padding:10px 14px;border-radius:6px;opacity:0;pointer-events:none;transition:opacity .3s}
 body.editing .edit-hint{opacity:1}
 </style>
 </head>
@@ -419,12 +438,12 @@ body.editing .edit-hint{opacity:1}
 <div class="deck-viewport">
 <main class="deck-stage" id="deckStage">
 
-<!-- ================= SLIDE 1 封面 ================= -->
-<section class="slide s1 active" aria-label="封面">
-  <h1 class="title reveal d1">舒經</h1>
-  <p class="latin reveal d2">easeSutra</p>
-  <p class="sub reveal d3">用手指，<b>一字一格</b>，抄寫般若心經二百六十字。<br>寫完，排成直書經文，成為一幅可以分享的作品。</p>
-  <p class="meta reveal d4">產品介紹 · 二〇二六年九月</p>
+<!-- ================= SLIDE 1 Cover ================= -->
+<section class="slide s1 active" aria-label="Cover">
+  <h1 class="title reveal d1">easeSutra</h1>
+  <p class="cn reveal d2">舒經</p>
+  <p class="sub reveal d3">Copy the Heart Sutra by hand, <b>one character per cell</b>, with nothing but your finger. When the last of its 260 characters is written, your handwriting becomes a vertical scroll you can share.</p>
+  <p class="meta reveal d4">Product overview · September 2026</p>
   <div class="seal-wrap"><div class="seal">舒經</div></div>
   <div class="jingming reveal d2">般若波羅蜜多心經</div>
   <div class="column reveal d2">
@@ -439,113 +458,130 @@ body.editing .edit-hint{opacity:1}
   </div>
 </section>
 
-<!-- ================= SLIDE 2 緣起 ================= -->
-<section class="slide s2" aria-label="緣起">
+<!-- ================= SLIDE 2 Origin ================= -->
+<section class="slide s2" aria-label="Origin">
   <div class="bigchar s2-char" aria-hidden="true">心</div>
-  <div class="vlabel reveal d1">緣起</div>
-  <h2 class="h-big reveal d2">抄經，<br>是最<span class="zhu">安靜</span>的修行。</h2>
-  <p class="lead reveal d3">一筆一畫，把心放回當下。<br>但紙、筆、經帖，不會總在手邊。<br>手機一直都在。</p>
-  <div class="corner reveal d4">舒經 · 為什麼</div>
-  <div class="pageno reveal d4">02 / 09</div>
+  <div class="vlabel reveal d1">Origin</div>
+  <h2 class="h-big reveal d2">Copying a sutra is<br>the <span class="zhu">quietest</span> practice.</h2>
+  <p class="lead reveal d3">One stroke at a time, the mind returns to the present.<br>But paper, brush and scripture are rarely within reach.<br>Your phone always is.</p>
+  <div class="corner reveal d4">easeSutra · Why</div>
+  <div class="pageno reveal d4">02 / 10</div>
 </section>
 
-<!-- ================= SLIDE 3 三步 ================= -->
-<section class="slide s3" aria-label="三步完成">
-  <div class="vlabel reveal d1">流程</div>
-  <h2 class="h-big reveal d1">三步，<span class="zhu">完成一幅經文</span>。</h2>
+<!-- ================= SLIDE 3 Three steps ================= -->
+<section class="slide s3" aria-label="Three steps">
+  <div class="vlabel reveal d1">Flow</div>
+  <h2 class="h-big reveal d1">Three steps to a <span class="zhu">finished scroll</span>.</h2>
   <div class="steps">
     <div class="step reveal d2">
       <div class="num">壹</div>
-      <h3>選經文</h3>
-      <p>內建般若心經 260 字。<br>有進度就接著寫，沒有就從第一個字開始。</p>
+      <h3>Choose a sutra</h3>
+      <p>The Heart Sutra, 260 characters, is built in. Pick up where you left off, or start from the first character.</p>
     </div>
     <div class="step reveal d3">
       <div class="num">貳</div>
-      <h3>一字一格抄寫</h3>
-      <p>格內淡印範字，用手指跟著寫。<br>每寫一字即刻保存。</p>
+      <h3>Write one character per cell</h3>
+      <p>A faint model character guides your finger. Every character is saved the moment you write it.</p>
     </div>
     <div class="step reveal d4">
       <div class="num">參</div>
-      <h3>成為作品</h3>
-      <p>手寫字自動排成直書經文，<br>存到相簿，或直接分享。</p>
+      <h3>It becomes a piece</h3>
+      <p>Your handwriting is laid out as a vertical scroll. Save it to Photos, or share it right away.</p>
     </div>
   </div>
-  <div class="corner reveal d5">舒經 · 流程</div>
-  <div class="pageno reveal d5">03 / 09</div>
+  <div class="corner reveal d5">easeSutra · Flow</div>
+  <div class="pageno reveal d5">03 / 10</div>
 </section>
 
-<!-- ================= SLIDE 4 抄寫體驗 ================= -->
-<section class="slide s4" aria-label="抄寫體驗">
+<!-- ================= SLIDE 4 Live demo ================= -->
+<section class="slide sdemo" aria-label="Live demo">
+  <div class="vlabel reveal d1">Demo</div>
+  <h2 class="h-big reveal d1">The whole flow,<br>in <span class="zhu">28 seconds</span>.</h2>
+  <p class="lead reveal d2">A real screen recording from the current build. No cuts, no speed-up.</p>
+  <ul class="timeline">
+    <li class="reveal d3"><div class="t">0:00</div><p>Start on a finished piece, step back to the library, and open the Heart Sutra.</p></li>
+    <li class="reveal d4"><div class="t">0:05</div><p>Write 觀, 自, 菩, 薩. Faint guide, one cell at a time. Back and Clear are right there.</p></li>
+    <li class="reveal d5"><div class="t">0:22</div><p>Tap Done. The page renders as a vertical scroll, ready to save or share.</p></li>
+  </ul>
+  <div class="device reveal d2">
+    <video class="demo-video" src="assets/easeSutra-demo.mp4" muted playsinline loop preload="auto" aria-label="easeSutra screen recording"></video>
+  </div>
+  <div class="corner reveal d5">easeSutra · Demo</div>
+  <div class="pageno reveal d5">04 / 10</div>
+</section>
+
+<!-- ================= SLIDE 5 Writing experience ================= -->
+<section class="slide s4" aria-label="Writing experience">
   <div class="phone reveal d1">
-    <div class="top">般若波羅蜜多心經<b>第 1 字 / 260</b></div>
+    <div class="top">Heart Sutra<b>Character 1 of 260</b></div>
     <div class="neighbors"><span>　</span><div class="bigcell"><span class="ghost">觀</span><span class="ink">觀</span></div><span>自</span></div>
-    <div class="btns"><div class="btn">清除</div><div class="btn">上一字</div><div class="btn primary">下一字</div></div>
+    <div class="btns"><div class="btn">Clear</div><div class="btn">Back</div><div class="btn primary">Next</div></div>
   </div>
   <ul class="points">
-    <li class="reveal d2"><div class="k">描紅</div><div><h3>淡印範字，跟著寫就好</h3><p>不需要會書法。格子裡的灰字是引導，寫出來的每一筆都是自己的。</p></div></li>
-    <li class="reveal d3"><div class="k">即存</div><div><h3>每寫一字，立刻保存</h3><p>通勤寫三個字、睡前寫十個字。中途離開不用確認，回來從原處接續。</p></div></li>
-    <li class="reveal d4"><div class="k">可改</div><div><h3>上一字，隨時回頭修</h3><p>寫壞了不用重來。退回前一格，重寫那一個字就好。</p></div></li>
+    <li class="reveal d2"><div class="k">Trace</div><div><h3>A faint guide. Just follow it.</h3><p>No calligraphy training needed. The grey character is only a guide; every stroke you make is your own.</p></div></li>
+    <li class="reveal d3"><div class="k">Saved</div><div><h3>Every character saved instantly</h3><p>Three characters on the commute, ten before bed. Leave without confirming, and come back exactly where you stopped.</p></div></li>
+    <li class="reveal d4"><div class="k">Undo</div><div><h3>Step back, fix one character</h3><p>A bad stroke doesn't mean starting over. Go back one cell and rewrite just that character.</p></div></li>
   </ul>
-  <div class="corner reveal d5">舒經 · 抄寫</div>
-  <div class="pageno reveal d5">04 / 09</div>
+  <div class="corner reveal d5">easeSutra · Writing</div>
+  <div class="pageno reveal d5">05 / 10</div>
 </section>
 
-<!-- ================= SLIDE 5 成品版面 ================= -->
-<section class="slide s5" aria-label="成品版面">
+<!-- ================= SLIDE 6 Output ================= -->
+<section class="slide s5" aria-label="Output page">
   <div class="page reveal d1">
     <div class="tcol">般若波羅蜜多心經</div>
     <div class="body"><div class="chars">觀自在菩薩行深般若波羅蜜多時照見五蘊皆空度一切苦厄舍利子色不異空空不異色色即是空空即是色受想行識亦復如是舍利子是諸法空相不生不滅不垢不淨不增不減是故空中無色無受想行識無眼耳鼻舌身意無色聲香味觸法無眼界乃至無意識界無無明亦無無明盡乃至無老死亦無老死盡無苦集滅道無智亦無得以無所得故菩提薩埵依般若波羅蜜多故心無罣礙無罣礙故無有恐怖遠離顛倒夢想究竟涅槃三世諸佛依般若波羅蜜多故得阿耨多羅三藐三菩提故知般若波羅蜜多是大神咒是大明咒是無上咒</div></div>
-    <div class="foot">第 1 / 2 頁 · 2026.09.20</div>
+    <div class="foot">Page 1 of 2 · 2026.09.20</div>
   </div>
-  <div class="vlabel reveal d1">成品</div>
+  <div class="vlabel reveal d1">Output</div>
   <ul class="points">
-    <li class="reveal d2"><div class="k">直書</div><div><h3>由右到左，一行二十字</h3><p>最右一行印經名，之後十行內文。像一頁經帖，而不是一張截圖。</p></div></li>
-    <li class="reveal d3"><div class="k">合宜</div><div><h3>每個字置中、等比縮放</h3><p>取實際筆跡範圍，縮到格子的八成大小。寫得大寫得小，排出來都整齊。</p></div></li>
+    <li class="reveal d2"><div class="k">Vertical</div><div><h3>Right to left, twenty per column</h3><p>The rightmost column carries the title, followed by ten columns of text. It reads like a page of scripture, not a screenshot.</p></div></li>
+    <li class="reveal d3"><div class="k">Fitted</div><div><h3>Every character centered and scaled</h3><p>The real bounds of each stroke are scaled to 80% of the cell. Written large or small, the page comes out even.</p></div></li>
   </ul>
   <div class="stat reveal d4">
-    <div><b>260</b>字</div>
-    <div><b>2</b>頁</div>
-    <div><b>1080 × 1920</b>手機全螢幕比例</div>
+    <div><b>260</b>characters</div>
+    <div><b>2</b>pages</div>
+    <div><b>1080 × 1920</b>full-screen phone ratio</div>
   </div>
-  <div class="corner reveal d5">舒經 · 成品</div>
-  <div class="pageno reveal d5">05 / 09</div>
+  <div class="corner reveal d5">easeSutra · Output</div>
+  <div class="pageno reveal d5">06 / 10</div>
 </section>
 
-<!-- ================= SLIDE 6 分享 ================= -->
-<section class="slide s6" aria-label="分享">
-  <div class="vlabel reveal d1">分享</div>
-  <h2 class="h-big reveal d1">寫完，<br><span class="zhu">就分享</span>。</h2>
-  <p class="lead reveal d2">一鍵存到相簿，或打開系統分享面板。<br>Instagram、LINE、訊息，都能直接送出。</p>
-  <div class="pills reveal d3"><div class="pill primary">存到相簿</div><div class="pill">分享…</div></div>
+<!-- ================= SLIDE 7 Share ================= -->
+<section class="slide s6" aria-label="Share">
+  <div class="vlabel reveal d1">Share</div>
+  <h2 class="h-big reveal d1">Finish,<br><span class="zhu">then share</span>.</h2>
+  <p class="lead reveal d2">Save to Photos in one tap, or open the system share sheet.<br>Instagram, LINE, Messages: they all work out of the box.</p>
+  <div class="pills reveal d3"><div class="pill primary">Save to Photos</div><div class="pill">Share…</div></div>
   <div class="stack">
-    <div class="sheet a reveal d2"><div class="tag">第 2 頁</div></div>
-    <div class="sheet b reveal d3"><div class="tag">第 1 頁</div></div>
+    <div class="sheet a reveal d2"><div class="tag">Page 2</div></div>
+    <div class="sheet b reveal d3"><div class="tag">Page 1</div></div>
   </div>
-  <div class="corner reveal d4">舒經 · 分享</div>
-  <div class="pageno reveal d4">06 / 09</div>
+  <div class="corner reveal d4">easeSutra · Share</div>
+  <div class="pageno reveal d4">07 / 10</div>
 </section>
 
-<!-- ================= SLIDE 7 技術骨架 ================= -->
-<section class="slide s7" aria-label="技術骨架">
-  <div class="vlabel reveal d1">技術</div>
-  <h2 class="h-big reveal d1">簡單的<span class="zhu">骨架</span>，五個單元各司其職。</h2>
+<!-- ================= SLIDE 8 Technical skeleton ================= -->
+<section class="slide s7" aria-label="Technical skeleton">
+  <div class="vlabel reveal d1">Tech</div>
+  <h2 class="h-big reveal d1">A simple <span class="zhu">skeleton</span>: five units, one job each.</h2>
   <div class="tech">
-    <div class="reveal d2"><div class="k">SwiftUI</div><div><h3>原生 iOS 17</h3><p>iPhone 優先。三個畫面，線性導覽，沒有多餘設定。</p></div></div>
-    <div class="reveal d3"><div class="k">PencilKit</div><div><h3>系統級手寫</h3><p>筆跡由 Apple 的引擎收集與序列化，手指、Apple Pencil 都能用。</p></div></div>
-    <div class="reveal d4"><div class="k">JSON</div><div><h3>本機儲存，無雲端</h3><p>進度與筆跡都留在裝置裡。不需要帳號，不上傳任何資料。</p></div></div>
-    <div class="reveal d5"><div class="k">Pure Fn</div><div><h3>版面是純函式</h3><p>筆跡陣列進、分頁圖片出。座標計算可獨立測試，換經文也不用改邏輯。</p></div></div>
+    <div class="reveal d2"><div class="k">SwiftUI</div><div><h3>Native iOS 17</h3><p>iPhone first. Three screens, linear navigation, no settings to fiddle with.</p></div></div>
+    <div class="reveal d3"><div class="k">PencilKit</div><div><h3>System-grade handwriting</h3><p>Strokes are captured and serialized by Apple's own engine. Finger or Apple Pencil, both work.</p></div></div>
+    <div class="reveal d4"><div class="k">JSON</div><div><h3>Local storage, no cloud</h3><p>Progress and strokes stay on the device. No account, and nothing is ever uploaded.</p></div></div>
+    <div class="reveal d5"><div class="k">Pure Fn</div><div><h3>Layout as a pure function</h3><p>Strokes in, paged images out. Coordinates are unit-testable, and a new sutra needs no logic changes.</p></div></div>
   </div>
-  <div class="corner reveal d6">舒經 · 技術</div>
-  <div class="pageno reveal d6">07 / 09</div>
+  <div class="corner reveal d6">easeSutra · Tech</div>
+  <div class="pageno reveal d6">08 / 10</div>
 </section>
 
-<!-- ================= SLIDE 8 下一步 ================= -->
-<section class="slide s8" aria-label="下一步">
-  <h2 class="h-big reveal d1">先把一部經<span class="zhu">寫好</span>，<br>再走下一步。</h2>
+<!-- ================= SLIDE 9 Next ================= -->
+<section class="slide s8" aria-label="Next steps">
+  <h2 class="h-big reveal d1">Get one sutra <span class="zhu">right</span>,<br>then take the next step.</h2>
   <ul class="next">
-    <li class="reveal d2"><div class="k">一</div><div><h3>更多經文</h3><p>大悲咒、金剛經。資料結構已預留，只差文字。</p></div></li>
-    <li class="reveal d3"><div class="k">二</div><div><h3>Instagram 限時動態直跳</h3><p>成品比例已是 9:16，接上 URL scheme 即可。</p></div></li>
-    <li class="reveal d4"><div class="k">三</div><div><h3>自訂經文與手寫提示</h3><p>讓使用者貼上自己的文字；辨識筆跡給予輕提示。</p></div></li>
+    <li class="reveal d2"><div class="k">一</div><div><h3>More sutras</h3><p>Great Compassion Mantra, Diamond Sutra. The data model is ready; only the text is missing.</p></div></li>
+    <li class="reveal d3"><div class="k">二</div><div><h3>Straight to Instagram Stories</h3><p>The output is already 9:16. All that's left is wiring up the URL scheme.</p></div></li>
+    <li class="reveal d4"><div class="k">三</div><div><h3>Custom text and handwriting hints</h3><p>Let people paste their own text; recognize strokes and nudge gently.</p></div></li>
   </ul>
   <div class="column reveal d2">
     <div class="cell"><span class="ghost">遠</span><span class="ink">遠</span></div>
@@ -557,35 +593,35 @@ body.editing .edit-hint{opacity:1}
     <div class="cell"><span class="ghost">究</span><span class="ink">究</span></div>
     <div class="cell"><span class="ghost">竟</span><span class="ink">竟</span></div>
   </div>
-  <div class="corner reveal d5">舒經 · 下一步</div>
-  <div class="pageno reveal d5">08 / 09</div>
+  <div class="corner reveal d5">easeSutra · Next</div>
+  <div class="pageno reveal d5">09 / 10</div>
 </section>
 
-<!-- ================= SLIDE 9 結尾 ================= -->
-<section class="slide s9" aria-label="結尾">
-  <h1 class="title reveal d1">舒經</h1>
-  <p class="latin reveal d2">easeSutra</p>
-  <p class="lead reveal d3">一字一格，把心放回當下。</p>
+<!-- ================= SLIDE 10 Closing ================= -->
+<section class="slide s9" aria-label="Closing">
+  <h1 class="title reveal d1">easeSutra</h1>
+  <p class="cn reveal d2">舒經</p>
+  <p class="lead reveal d3">One character per cell. The mind returns to the present.</p>
   <div class="seal-wrap"><div class="seal">舒經</div></div>
-  <div class="corner reveal d4">謝謝</div>
-  <div class="pageno reveal d4">09 / 09</div>
+  <div class="corner reveal d4">Thank you</div>
+  <div class="pageno reveal d4">10 / 10</div>
 </section>
 
 </main>
 </div>
 
-<!-- 舞台外的簡報 UI -->
-<div class="deck-controls" id="deckProgress">1 / 9</div>
+<!-- Presentation UI outside the stage -->
+<div class="deck-controls" id="deckProgress">1 / 10</div>
 <div class="edit-hotzone" aria-hidden="true"></div>
-<button class="edit-toggle" id="editToggle" title="編輯模式 (E)">✎</button>
-<div class="edit-hint">編輯模式：點文字直接修改 · Ctrl/⌘+S 儲存 · E 離開</div>
+<button class="edit-toggle" id="editToggle" title="Edit mode (E)">✎</button>
+<div class="edit-hint">Edit mode: click any text to change it · Ctrl/⌘+S to save · E to exit</div>
 
 <script>
 /* ===========================================
    SLIDE PRESENTATION CONTROLLER
-   - 固定 1920×1080 舞台等比縮放
-   - 鍵盤 / 觸控滑動 / 滑鼠滾輪切頁
-   - URL hash (#3) 直接跳到第 n 頁
+   - fixed 1920×1080 stage scaled uniformly to the viewport
+   - keyboard / swipe / wheel navigation
+   - URL hash (#3) jumps straight to slide n
    =========================================== */
 class SlidePresentation {
   constructor() {
@@ -624,7 +660,7 @@ class SlidePresentation {
       if (document.body.classList.contains('editing')) return;
       const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
       if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) { dx < 0 ? this.next() : this.prev(); }
-      else if (Math.abs(dx) < 10 && Math.abs(dy) < 10) { this.next(); } // 輕點前進
+      else if (Math.abs(dx) < 10 && Math.abs(dy) < 10) { this.next(); } // tap advances
     }, { passive: true });
   }
   setupWheel() {
@@ -641,12 +677,17 @@ class SlidePresentation {
     this.slides.forEach((s, k) => {
       const on = k === this.current;
       s.classList.toggle('active', on);
-      // 延遲一格再加 .visible，讓進場動畫每次都會重播
+      // add .visible one frame later so entrance animations replay every time
       if (on) requestAnimationFrame(() => setTimeout(() => s.classList.add('visible'), 60));
       else s.classList.remove('visible');
     });
     this.progress.textContent = `${this.current + 1} / ${this.slides.length}`;
     history.replaceState(null, '', `#${this.current + 1}`);
+    // Play videos only on the active slide; rewind and pause the rest
+    document.querySelectorAll('.slide video').forEach(v => {
+      if (v.closest('.slide').classList.contains('active')) { v.currentTime = 0; v.play().catch(() => {}); }
+      else { v.pause(); }
+    });
   }
   next() { this.show(this.current + 1); }
   prev() { this.show(this.current - 1); }
@@ -654,14 +695,14 @@ class SlidePresentation {
 
 /* ===========================================
    INLINE EDITOR
-   - 左上角 hover 或按 E 進入編輯模式
-   - 點任何文字直接修改，自動存到 localStorage
-   - Ctrl/⌘+S 下載含修改的 HTML
+   - hover the top-left corner or press E to enter edit mode
+   - click any text to edit; changes auto-save to localStorage
+   - Ctrl/⌘+S downloads the HTML with your edits baked in
    =========================================== */
 class InlineEditor {
   constructor() {
     this.isActive = false;
-    this.key = 'easeSutra-pitch-edits';
+    this.key = 'easeSutra-pitch-en-edits';
     this.selector = '.slide h1, .slide h2, .slide h3, .slide p, .slide .k, .slide .num, .slide .corner, .slide .pageno, .slide .vlabel, .slide .jingming, .slide .tag, .slide .pill, .slide .btn, .slide .top, .slide .tcol, .slide .foot, .slide .stat div, .slide .seal';
     this.restore();
     addEventListener('keydown', (e) => {
@@ -705,7 +746,7 @@ class InlineEditor {
 const deck = new SlidePresentation();
 const editor = new InlineEditor();
 
-// 編輯按鈕：hotzone hover（400ms 寬限）+ 點擊
+// Edit button: hotzone hover (400ms grace) + click
 (() => {
   const hot = document.querySelector('.edit-hotzone'), btn = document.getElementById('editToggle');
   let t = null;
