@@ -1,6 +1,6 @@
 # easeSutra 舒經 — Speaker Script
 
-Companion to `easeSutra-pitch.html`. Ten slides, about five to six minutes at a relaxed pace.
+Companion to `easeSutra-pitch.html`. Twelve slides, about seven to eight minutes at a relaxed pace.
 Stage directions are in brackets. Advance the slide where marked with ▸.
 
 ---
@@ -103,7 +103,37 @@ And the layout is a pure function. Strokes in, paged images out. The coordinate 
 
 ▸
 
-## 9 · Next
+## 9 · Research
+
+Now, a question we had to answer before going further: can a phone actually read a handwritten prayer sheet?
+
+This is our test page. A Taoist lamp-lighting prayer, about a hundred and twenty characters, written vertically in ballpoint pen. Exactly the kind of thing someone might want to copy.
+
+We ran it through Apple Vision, on device. It reads about nine in ten characters, in two seconds, for free. Good enough to tell what the sheet is about.
+
+But look at the misses. Every single error is a look-alike. It reads 大辛 where the sheet says 大帝, the name of a deity. It reads 笑厄, "laughing misfortune," where the sheet says 災厄, "disaster." The shape is right; the meaning is wrong. To fix these, you have to understand what the text is.
+
+We also tried Apple's on-device language model to repair the draft. It fixed one to three of the eleven errors, and only for words we spelled out in the hint. It's too small for semantic repair.
+
+▸
+
+## 10 · Claude
+
+So here is where we're going: bring your own scripture, and Claude reads it into the library.
+
+Three steps. First, snap the sheet. A sutra page, a temple prayer, a mantra card. Vertical or horizontal, print or handwriting.
+
+Second, Apple Vision produces a draft on the device. Fast and free. It gives Claude the layout and a rough transcript to start from.
+
+Third, we call the Claude API. Claude Opus 5 sees the image and the draft, understands the liturgical context, and returns clean text. If it matches a known sutra in our library, we link it. If not, it's added as a new scripture you can copy.
+
+Look at what that fixes. 大辛 becomes 大帝, because Claude knows it's a deity's name. 星店 becomes 星君, because the same title appears twice on the page. 笑厄 becomes 災厄, because "laughing misfortune" makes no sense. And 劉燈其間 becomes 點燈期間, echoing the title of the sheet. None of those are shape corrections. They're reading with understanding.
+
+One boundary we're keeping: only the photo leaves the device, and only when you choose to import. Copying itself stays fully offline.
+
+▸
+
+## 11 · Next
 
 Where this goes next. The philosophy is: get one sutra right, then take the next step.
 
@@ -111,11 +141,11 @@ More sutras is first. The Great Compassion Mantra, the Diamond Sutra. The data m
 
 Second, straight to Instagram Stories. The output is already 9:16. What's left is wiring up the URL scheme.
 
-Third, custom text and handwriting hints. Let people paste in their own passages, and gently recognize strokes to offer a nudge, never a grade.
+Third, bring your own scripture. Photograph a sheet, Claude reads it in. And once you're copying, gentle stroke hints. A nudge, never a grade.
 
 ▸
 
-## 10 · Closing
+## 12 · Closing
 
 That's easeSutra. 舒經.
 
@@ -137,9 +167,11 @@ Thank you. I'm happy to take questions, or to hand you the phone.
 | 6 Output | 0:40 |
 | 7 Share | 0:25 |
 | 8 Tech | 0:45 |
-| 9 Next | 0:35 |
-| 10 Closing | 0:15 |
-| **Total** | **≈ 6:00** |
+| 9 Research | 0:50 |
+| 10 Claude | 0:55 |
+| 11 Next | 0:35 |
+| 12 Closing | 0:15 |
+| **Total** | **≈ 7:45** |
 
 ## Likely questions
 
@@ -147,13 +179,15 @@ Thank you. I'm happy to take questions, or to hand you the phone.
 - **Does it check whether I wrote the character correctly?** No, and that's on purpose. This is practice, not a test. Recognition may come later as a gentle hint, never a score.
 - **Apple Pencil?** It works today through PencilKit. There's no Pencil-specific UI yet.
 - **iPad?** It runs, but the layout is designed for iPhone. A dedicated iPad layout is not in this version.
-- **Where's my data?** On your device, as JSON. Nothing leaves the phone unless you share it.
+- **Where's my data?** On your device, as JSON. Nothing leaves the phone unless you share it, or choose to import a photo for recognition.
+- **Why Claude instead of a bigger OCR model?** The errors aren't visual, they're semantic. Fixing 笑厄 to 災厄 needs a model that knows what a prayer says. Claude Opus 5 reads the image and the context together; an OCR engine only sees shapes.
+- **What does recognition cost?** One API call per imported sheet. It happens once, at import; copying never calls the network.
 
 ---
 
 ## One-minute version (≈ 150 words)
 
-Use slides 1, 4 and 10 only. Start the video as you begin the second paragraph.
+Use slides 1, 4 and 12 only. Start the video as you begin the second paragraph.
 
 This is easeSutra, 舒經. It's an iPhone app for copying the Heart Sutra by hand, one character per cell, with nothing but your finger.
 
@@ -169,7 +203,7 @@ One character per cell. The mind returns to the present. That's easeSutra.
 
 ## 一分鐘版（中文，約 230 字）
 
-只用第 1、4、10 頁。講到第二段時切到 Demo 頁讓影片開始播。
+只用第 1、4、12 頁。講到第二段時切到 Demo 頁讓影片開始播。
 
 這是 easeSutra，舒經。一個 iPhone App，讓你用手指，一字一格，親手抄寫般若心經。
 

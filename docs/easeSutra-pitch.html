@@ -397,7 +397,44 @@ svg {
 .tech p{margin-top:12px;font-size:25px;line-height:1.7;font-weight:400;color:var(--ink-70)}
 
 /* ===========================================
-   SLIDE 8 — Next
+   SLIDE 9 — Research: reading handwriting (Apple Vision results)
+   =========================================== */
+.s9r .h-big{top:110px;font-size:84px;width:1500px}
+.photo{
+  left:150px;top:330px;width:860px;height:608px;border:1.5px solid var(--grid-strong);overflow:hidden;
+  box-shadow:0 30px 60px -30px rgba(60,40,20,.35);background:#fff;
+}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;max-width:none;max-height:none}
+.photo .cap{position:absolute;left:0;right:0;bottom:0;padding:12px 20px;background:rgba(28,26,23,.78);color:var(--paper);font-size:18px;letter-spacing:.08em}
+.findings{left:1080px;top:330px;width:660px}
+.findings li{list-style:none;padding:24px 0;border-bottom:1px solid var(--grid)}
+.findings li:last-child{border-bottom:none}
+.findings .k{font-size:22px;letter-spacing:.16em;text-transform:uppercase;color:var(--zhu)}
+.findings h3{margin-top:8px;font-weight:700;font-size:32px;letter-spacing:-.005em;line-height:1.25}
+.findings p{margin-top:8px;font-size:23px;line-height:1.6;color:var(--ink-70)}
+.findings .cjk{font-family:var(--font-serif);font-weight:500}
+
+/* ===========================================
+   SLIDE 10 — Recognition with Claude (pipeline)
+   =========================================== */
+.s10 .h-big{top:110px;font-size:84px;width:1500px}
+.pipe{left:150px;top:340px;width:1500px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
+.pipe > div{position:relative;padding:32px 40px 32px 0;border-top:1.5px solid var(--grid-strong)}
+.pipe > div + div{padding-left:40px;border-left:1px solid var(--grid)}
+.pipe .k{font-size:22px;letter-spacing:.16em;text-transform:uppercase;color:var(--zhu)}
+.pipe h3{margin-top:10px;font-weight:700;font-size:36px;letter-spacing:-.005em}
+.pipe p{margin-top:12px;font-size:24px;line-height:1.6;color:var(--ink-70)}
+.pipe .arrow{position:absolute;right:-18px;top:96px;font-size:40px;color:var(--zhu);line-height:1}
+.fixes{left:150px;top:680px;width:1500px;display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+.fix{padding:22px 26px;border:1.5px solid var(--grid);background:rgba(255,255,255,.28)}
+.fix .from{font-family:var(--font-serif);font-size:34px;color:var(--ink-55);text-decoration:line-through;text-decoration-color:var(--zhu);text-decoration-thickness:3px}
+.fix .to{font-family:var(--font-serif);font-weight:700;font-size:38px;color:var(--ink);margin-top:6px}
+.fix .to b{color:var(--zhu)}
+.fix .why{margin-top:10px;font-size:19px;letter-spacing:.04em;color:var(--ink-55)}
+.s10 .note{left:150px;top:918px;width:1500px;font-size:22px;color:var(--ink-55)}
+
+/* ===========================================
+   SLIDE 11 — Next
    =========================================== */
 .s8 .h-big{top:130px;font-size:84px;width:1300px}
 .next{left:150px;top:400px;width:1250px}
@@ -409,7 +446,7 @@ svg {
 .s8 .column{right:190px;top:60px}
 
 /* ===========================================
-   SLIDE 9 — Closing
+   SLIDE 12 — Closing
    =========================================== */
 .s9 .title{left:0;right:0;top:300px;text-align:center;font-weight:900;font-size:200px;line-height:1;letter-spacing:-.01em}
 .s9 .cn{left:0;right:0;top:560px;text-align:center;font-family:var(--font-kai);font-size:60px;letter-spacing:.3em;color:var(--ink);opacity:.7}
@@ -575,13 +612,50 @@ body.editing .edit-hint{opacity:1}
   <div class="pageno reveal d6">08 / 10</div>
 </section>
 
-<!-- ================= SLIDE 9 Next ================= -->
+<!-- ================= SLIDE 9 Research: reading handwriting ================= -->
+<section class="slide s9r" aria-label="Reading handwriting">
+  <div class="vlabel reveal d1">Research</div>
+  <h2 class="h-big reveal d1">Can a phone <span class="zhu">read</span> a handwritten prayer sheet?</h2>
+  <div class="photo reveal d2">
+    <img src="assets/prayer-handwriting.jpg" alt="Handwritten Taoist lamp-lighting prayer text on lined paper">
+    <div class="cap">Test sheet · 點燈祈願文 · ~120 characters, vertical, ballpoint pen</div>
+  </div>
+  <ul class="findings">
+    <li class="reveal d3"><div class="k">Apple Vision</div><h3>Reads about 9 in 10 characters</h3><p>On-device, two seconds, free. Good enough to see what the sheet is about.</p></li>
+    <li class="reveal d4"><div class="k">The misses</div><h3>Every error is a look-alike</h3><p><span class="cjk">大辛</span> for <span class="cjk">大帝</span>, <span class="cjk">笑厄</span> for <span class="cjk">災厄</span>. Shape is right, meaning is wrong. You need to know the text to fix them.</p></li>
+    <li class="reveal d5"><div class="k">On-device LLM</div><h3>Fixed 1 to 3 of 11 errors</h3><p>Apple's on-device model only corrected words we spelled out in the hint. Too small for semantic repair.</p></li>
+  </ul>
+  <div class="corner reveal d5">easeSutra · Research</div>
+  <div class="pageno reveal d5"></div>
+</section>
+
+<!-- ================= SLIDE 10 Recognition with Claude ================= -->
+<section class="slide s10" aria-label="Recognition with Claude">
+  <div class="vlabel reveal d1">Claude</div>
+  <h2 class="h-big reveal d1">Bring your own scripture. <span class="zhu">Claude reads it</span> into the library.</h2>
+  <div class="pipe">
+    <div class="reveal d2"><div class="k">1 · Photo</div><h3>Snap the sheet</h3><p>A sutra page, a temple prayer, a mantra card. Vertical or horizontal, print or handwriting.</p><div class="arrow">→</div></div>
+    <div class="reveal d3"><div class="k">2 · Apple Vision</div><h3>Draft on device</h3><p>Fast, free first pass. Gives Claude the layout and a rough transcript to work from.</p><div class="arrow">→</div></div>
+    <div class="reveal d4"><div class="k">3 · Claude API</div><h3>Read with understanding</h3><p>Claude Opus 5 sees the image and the draft, knows the liturgical context, and returns a clean text. Matched to a known sutra, or added as new.</p></div>
+  </div>
+  <div class="fixes">
+    <div class="fix reveal d4"><div class="from">三官大辛</div><div class="to">三官大<b>帝</b></div><div class="why">Deity name, not a character shape</div></div>
+    <div class="fix reveal d5"><div class="from">北斗星店</div><div class="to">北斗星<b>君</b></div><div class="why">Same title appears twice on the page</div></div>
+    <div class="fix reveal d5"><div class="from">笑厄全消</div><div class="to"><b>災</b>厄全消</div><div class="why">"Laughing misfortune" makes no sense</div></div>
+    <div class="fix reveal d6"><div class="from">劉燈其間</div><div class="to"><b>點燈期</b>間</div><div class="why">Echoes the title of the sheet</div></div>
+  </div>
+  <p class="note reveal d6">Only the photo leaves the device, and only when the user chooses to import. Copying stays fully offline.</p>
+  <div class="corner reveal d6">easeSutra · Claude</div>
+  <div class="pageno reveal d6"></div>
+</section>
+
+<!-- ================= SLIDE 11 Next ================= -->
 <section class="slide s8" aria-label="Next steps">
   <h2 class="h-big reveal d1">Get one sutra <span class="zhu">right</span>,<br>then take the next step.</h2>
   <ul class="next">
     <li class="reveal d2"><div class="k">一</div><div><h3>More sutras</h3><p>Great Compassion Mantra, Diamond Sutra. The data model is ready; only the text is missing.</p></div></li>
     <li class="reveal d3"><div class="k">二</div><div><h3>Straight to Instagram Stories</h3><p>The output is already 9:16. All that's left is wiring up the URL scheme.</p></div></li>
-    <li class="reveal d4"><div class="k">三</div><div><h3>Custom text and handwriting hints</h3><p>Let people paste their own text; recognize strokes and nudge gently.</p></div></li>
+    <li class="reveal d4"><div class="k">三</div><div><h3>Bring your own scripture</h3><p>Photograph a sheet, Claude reads it into the library. Then gentle stroke hints while you copy.</p></div></li>
   </ul>
   <div class="column reveal d2">
     <div class="cell"><span class="ghost">遠</span><span class="ink">遠</span></div>
@@ -597,7 +671,7 @@ body.editing .edit-hint{opacity:1}
   <div class="pageno reveal d5">09 / 10</div>
 </section>
 
-<!-- ================= SLIDE 10 Closing ================= -->
+<!-- ================= SLIDE 12 Closing ================= -->
 <section class="slide s9" aria-label="Closing">
   <h1 class="title reveal d1">easeSutra</h1>
   <p class="cn reveal d2">舒經</p>
@@ -611,7 +685,7 @@ body.editing .edit-hint{opacity:1}
 </div>
 
 <!-- Presentation UI outside the stage -->
-<div class="deck-controls" id="deckProgress">1 / 10</div>
+<div class="deck-controls" id="deckProgress">1 / 12</div>
 <div class="edit-hotzone" aria-hidden="true"></div>
 <button class="edit-toggle" id="editToggle" title="Edit mode (E)">✎</button>
 <div class="edit-hint">Edit mode: click any text to change it · Ctrl/⌘+S to save · E to exit</div>
@@ -633,6 +707,9 @@ class SlidePresentation {
     this.setupKeyboard();
     this.setupTouch();
     this.setupWheel();
+    // Page numbers are generated, so inserting a slide never needs manual renumbering
+    const pad = n => String(n).padStart(2, '0');
+    this.slides.forEach((s, i) => { const p = s.querySelector('.pageno'); if (p) p.textContent = `${pad(i + 1)} / ${pad(this.slides.length)}`; });
     const fromHash = parseInt(location.hash.replace('#', ''), 10);
     this.show(isNaN(fromHash) ? 0 : fromHash - 1);
   }
