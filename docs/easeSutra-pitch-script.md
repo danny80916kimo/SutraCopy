@@ -148,3 +148,19 @@ Thank you. I'm happy to take questions, or to hand you the phone.
 - **Apple Pencil?** It works today through PencilKit. There's no Pencil-specific UI yet.
 - **iPad?** It runs, but the layout is designed for iPhone. A dedicated iPad layout is not in this version.
 - **Where's my data?** On your device, as JSON. Nothing leaves the phone unless you share it.
+
+---
+
+## One-minute version (≈ 150 words)
+
+Use slides 1, 4 and 10 only. Start the video as you begin the second paragraph.
+
+This is easeSutra, 舒經. It's an iPhone app for copying the Heart Sutra by hand, one character per cell, with nothing but your finger.
+
+Copying sutras is a thousand-year-old way to slow down. But paper and brush are never around when you have ten quiet minutes. Your phone is.
+
+[video] You open the sutra, trace a faint guide character, and every stroke is saved the moment you write it. Write three characters on the train, ten before bed, pick up where you left off. When the last of the 260 characters is done, your handwriting is laid out as a vertical scroll, right to left, ready to save or share as an Instagram story.
+
+Native SwiftUI, PencilKit, everything stays on the device.
+
+One character per cell. The mind returns to the present. That's easeSutra.
