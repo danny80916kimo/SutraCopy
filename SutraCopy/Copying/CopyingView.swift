@@ -25,7 +25,9 @@ struct CopyingView: View {
 
     var body: some View {
         GeometryReader { geo in
-            let cellSize = min(geo.size.width * 0.85, 360)
+            // 兩側提示字各 32pt、間距 12pt、外邊距 16pt×2，剩下的才給格子。
+            let available = geo.size.width - 32 - 2 * (32 + 12)
+            let cellSize = max(200, min(available, 360))
             VStack(spacing: 24) {
                 header
                 Spacer(minLength: 0)
@@ -34,11 +36,12 @@ struct CopyingView: View {
                     cell(size: cellSize)
                     sideChar(previous)
                 }
+                .frame(maxWidth: .infinity)
                 Spacer(minLength: 0)
                 controls
             }
             .padding()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(width: geo.size.width, height: geo.size.height)
         }
         .background(Color(uiColor: SutraPageRenderer.paper).ignoresSafeArea())
         .navigationTitle(scripture.title)
@@ -130,6 +133,9 @@ struct CopyingView: View {
         }
         .tint(Color(uiColor: SutraPageRenderer.titleInk))
         .controlSize(.large)
+        .lineLimit(1)
+        .minimumScaleFactor(0.7)
+        .frame(maxWidth: .infinity)
     }
 
     // MARK: 動作
