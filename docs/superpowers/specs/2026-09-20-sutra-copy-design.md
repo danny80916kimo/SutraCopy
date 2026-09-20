@@ -101,7 +101,7 @@ struct CopySession: Codable {
 
 包裝 `PKCanvasView` 的 `UIViewRepresentable`：
 
-- 工具固定 `PKInkingTool(.pen, color: .black, width: 適合手指的粗度)`，不顯示工具列。
+- 工具固定 `PKInkingTool(.pen, color: .black, width: 10，實作時可微調)`，不顯示工具列。
 - `drawingPolicy = .anyInput`，關閉縮放與捲動。
 - 對外介面：`@Binding var drawing: PKDrawing`，父視圖以此讀寫與清空。
 
