@@ -9,6 +9,7 @@ enum Route: Hashable {
 struct LibraryView: View {
     @EnvironmentObject private var store: SessionStore
     @State private var path: [Route] = []
+    @AppStorage("demoCharacterLimit") private var demoLimit: Int = 0
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -42,6 +43,18 @@ struct LibraryView: View {
                 }
             }
             .navigationTitle("抄經")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Menu {
+                        Toggle("Demo 模式（只寫前 5 字）", isOn: Binding(
+                            get: { demoLimit > 0 },
+                            set: { demoLimit = $0 ? 5 : 0 }
+                        ))
+                    } label: {
+                        Image(systemName: demoLimit > 0 ? "wand.and.stars" : "ellipsis.circle")
+                    }
+                }
+            }
             .navigationDestination(for: Route.self) { route in
                 destination(for: route)
             }

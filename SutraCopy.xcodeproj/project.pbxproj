@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,7 @@
 		1E209ECB7AFD64E721364CD1 /* SutraPageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2E79FAFF23D98BA3B5906B /* SutraPageRenderer.swift */; };
 		212FC67ABB6CE2F58477F579 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8211150BCFA0F7B64A89A96F /* Assets.xcassets */; };
 		240A462D2F5CCC0D608410EE /* heart-sutra.txt in Resources */ = {isa = PBXBuildFile; fileRef = 14AE1FB13F0CCA54F4F90A93 /* heart-sutra.txt */; };
+		35528C6ADE0FA5F23F0FAC99 /* DebugRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B4D83636373918B2F109F4 /* DebugRender.swift */; };
 		3814BA9474441316C07E2F28 /* CopySession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DC0F867EDB436539122FE0 /* CopySession.swift */; };
 		56DEAE0CFDE17BE98C3F632E /* CharacterCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0472D2D079CE786120A51690 /* CharacterCanvas.swift */; };
 		6124E818477514427675C802 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1CA4E35D9E5C3A8B3C4BC4 /* SessionStore.swift */; };
@@ -34,7 +35,8 @@
 		2944E6724A723CDE21113CB0 /* ImageExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExporter.swift; sourceTree = "<group>"; };
 		2CCE20E9D9D0E916C60DFD3E /* SutraCopyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SutraCopyApp.swift; sourceTree = "<group>"; };
 		32512695777DA5C2694E0638 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
-		39BEC25CA7F7F8F476988789 /* SutraCopy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SutraCopy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		37B4D83636373918B2F109F4 /* DebugRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugRender.swift; sourceTree = "<group>"; };
+		39BEC25CA7F7F8F476988789 /* SutraCopy.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SutraCopy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43DC0F867EDB436539122FE0 /* CopySession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopySession.swift; sourceTree = "<group>"; };
 		8211150BCFA0F7B64A89A96F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BDFFDC1416466A8ACE30A4EA /* CopyingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyingView.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 		F05746E4F5432103F4BD44AA /* App */ = {
 			isa = PBXGroup;
 			children = (
+				37B4D83636373918B2F109F4 /* DebugRender.swift */,
 				2CCE20E9D9D0E916C60DFD3E /* SutraCopyApp.swift */,
 			);
 			path = App;
@@ -201,6 +204,7 @@
 			);
 			mainGroup = F96E0B9A1E72DB24B1876465;
 			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -229,6 +233,7 @@
 				56DEAE0CFDE17BE98C3F632E /* CharacterCanvas.swift in Sources */,
 				3814BA9474441316C07E2F28 /* CopySession.swift in Sources */,
 				DF60384B83C0FF250EE427E8 /* CopyingView.swift in Sources */,
+				35528C6ADE0FA5F23F0FAC99 /* DebugRender.swift in Sources */,
 				68568F063B13DBFA452CF8E9 /* ImageExporter.swift in Sources */,
 				7C318E181835D852386F15D6 /* LibraryView.swift in Sources */,
 				E407E750C4AEA0EE417B8583 /* PageLayout.swift in Sources */,
@@ -252,7 +257,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EX9Z9PUK4G;
 				INFOPLIST_FILE = SutraCopy/Info.plist;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -336,7 +340,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EX9Z9PUK4G;
 				INFOPLIST_FILE = SutraCopy/Info.plist;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (

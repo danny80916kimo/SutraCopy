@@ -9,6 +9,8 @@ struct CopyingView: View {
     @EnvironmentObject private var store: SessionStore
     @StateObject private var canvas = CanvasController()
     @State private var session: CopySession
+    /// Demo 模式：大於 0 時只要寫前 N 個字就算完成。
+    @AppStorage("demoCharacterLimit") private var demoLimit: Int = 0
 
     init(scripture: Scripture, initialSession: CopySession,
          onComplete: @escaping (SessionStore.CompletedWork) -> Void) {
@@ -17,11 +19,13 @@ struct CopyingView: View {
         _session = State(initialValue: initialSession)
     }
 
-    private var index: Int { min(session.nextIndex, scripture.count - 1) }
+    /// 這次需要寫的字數（Demo 模式會少於全文）。
+    private var requiredCount: Int { demoLimit > 0 ? min(demoLimit, scripture.count) : scripture.count }
+    private var index: Int { min(session.nextIndex, requiredCount - 1) }
     private var current: Character { scripture.characters[index] }
     private var previous: Character? { index > 0 ? scripture.characters[index - 1] : nil }
     private var following: Character? { index + 1 < scripture.count ? scripture.characters[index + 1] : nil }
-    private var isLast: Bool { index == scripture.count - 1 }
+    private var isLast: Bool { index == requiredCount - 1 }
 
     var body: some View {
         GeometryReader { geo in
@@ -32,9 +36,9 @@ struct CopyingView: View {
                 header
                 Spacer(minLength: 0)
                 HStack(alignment: .center, spacing: 12) {
-                    sideChar(following)     // 直書由右到左：下一字在左
-                    cell(size: cellSize)
                     sideChar(previous)
+                    cell(size: cellSize)
+                    sideChar(following)
                 }
                 .frame(maxWidth: .infinity)
                 Spacer(minLength: 0)
@@ -62,10 +66,10 @@ struct CopyingView: View {
 
     private var header: some View {
         VStack(spacing: 4) {
-            Text("第 \(index + 1) 字 / \(scripture.count)")
+            Text(demoLimit > 0 ? "Demo：第 \(index + 1) 字 / \(requiredCount)" : "第 \(index + 1) 字 / \(scripture.count)")
                 .font(.headline)
                 .foregroundStyle(Color(uiColor: SutraPageRenderer.titleInk))
-            ProgressView(value: Double(index), total: Double(scripture.count))
+            ProgressView(value: Double(index), total: Double(requiredCount))
                 .tint(Color(uiColor: SutraPageRenderer.titleInk))
                 .frame(maxWidth: 240)
         }
@@ -116,7 +120,7 @@ struct CopyingView: View {
             Button {
                 goBack()
             } label: {
-                Label("上一字", systemImage: "chevron.right")
+                Label("上一字", systemImage: "chevron.left")
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.bordered)
@@ -125,7 +129,7 @@ struct CopyingView: View {
             Button {
                 goNext()
             } label: {
-                Label(isLast ? "完成" : "下一字", systemImage: isLast ? "checkmark" : "chevron.left")
+                Label(isLast ? "完成" : "下一字", systemImage: isLast ? "checkmark" : "chevron.right")
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
@@ -159,7 +163,7 @@ struct CopyingView: View {
     private func goNext() {
         storeCurrent()
         if isLast {
-            session.nextIndex = scripture.count
+            session.nextIndex = requiredCount
             let work = store.complete(session)
             onComplete(work)
         } else {
