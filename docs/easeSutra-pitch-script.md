@@ -164,3 +164,19 @@ Copying sutras is a thousand-year-old way to slow down. But paper and brush are 
 Native SwiftUI, PencilKit, everything stays on the device.
 
 One character per cell. The mind returns to the present. That's easeSutra.
+
+---
+
+## 一分鐘版（中文，約 230 字）
+
+只用第 1、4、10 頁。講到第二段時切到 Demo 頁讓影片開始播。
+
+這是 easeSutra，舒經。一個 iPhone App，讓你用手指，一字一格，親手抄寫般若心經。
+
+抄經是流傳千年的靜心方法。但真正有十分鐘空檔的時候，紙和筆從來不在手邊。手機一直都在。
+
+［影片］打開經文，格子裡有淡淡的範字，跟著寫就好。每寫一字立刻存檔。通勤寫三個字，睡前寫十個字，回來從原處接續。寫完兩百六十字，你的字會自動排成由右到左的直書經文，可以存到相簿，也可以直接分享成 Instagram 限時動態。
+
+原生 SwiftUI、PencilKit，所有資料都留在手機裡。
+
+一字一格，把心放回當下。這就是舒經。
